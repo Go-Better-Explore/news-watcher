@@ -11,6 +11,7 @@
     <modules>
         <module>news-model</module>
         <module>news-analytics-logic</module>
+        <module>news-watcher-main</module>
     </modules>
 
     <properties>

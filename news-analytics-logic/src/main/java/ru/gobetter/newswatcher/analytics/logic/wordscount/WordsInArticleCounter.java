@@ -1,6 +1,6 @@
-package ru.gobetter.newswatcher.analytics.logic;
+package ru.gobetter.newswatcher.analytics.logic.wordscount;
 
-import ru.gobetter.newswatcher.analytics.logic.model.WordsCount;
+import ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount;
 import ru.gobetter.newswatcher.model.entity.Article;
 
 public interface WordsInArticleCounter {

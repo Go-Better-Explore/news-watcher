@@ -1,8 +1,8 @@
-package ru.gobetter.newswatcher.analytics.logic;
+package ru.gobetter.newswatcher.analytics.logic.wordscount;
 
 import lombok.val;
 import org.springframework.stereotype.Service;
-import ru.gobetter.newswatcher.analytics.logic.model.WordsCount;
+import ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount;
 import ru.gobetter.newswatcher.model.entity.Article;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package ru.gobetter.newswatcher.analytics.logic.model;
+package ru.gobetter.newswatcher.analytics.logic.wordscount.model;
 
 import lombok.Data;
 import lombok.val;

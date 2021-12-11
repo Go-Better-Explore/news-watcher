@@ -15,6 +15,7 @@
         <module>articles-extractor-core</module>
         <module>news-watcher-web</module>
         <module>article-extractor-implementations</module>
+        <module>news-reader-selenium-integration</module>
     </modules>
 
     <properties>

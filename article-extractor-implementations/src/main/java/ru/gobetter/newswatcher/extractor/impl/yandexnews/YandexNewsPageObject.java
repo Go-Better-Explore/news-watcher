@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Service;
+import ru.gobetter.newswatcher.extractor.core.extractors.CommonExtractorOperations;
 import ru.gobetter.newswatcher.model.entity.Article;
 
 import java.util.Set;
@@ -16,10 +17,10 @@ import static java.util.stream.Collectors.toSet;
 
 @Service
 @RequiredArgsConstructor
-class YandexNewsPageObject {
+class YandexNewsPageObject implements CommonExtractorOperations {
     private final WebDriver driver;
 
-    public Set<String> getArticleUrls(String mainPageUrl) {
+    public Set<String> getArticlesUrls(String mainPageUrl) {
         driver.navigate().to(mainPageUrl);
         val links = driver.findElements(By.cssSelector("#neo-page article a"));
         return links.stream().map(link -> link.getAttribute("href")).collect(toSet());

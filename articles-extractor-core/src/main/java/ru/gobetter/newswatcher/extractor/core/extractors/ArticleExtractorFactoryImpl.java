@@ -22,6 +22,8 @@ class ArticleExtractorFactoryImpl implements ArticleExtractorFactory {
 
     @Override
     public WebsiteArticlesExtractor getExtractorFor(Website website) {
-        return extractorMap.get(website.getUrl());
+        return extractorMap.keySet().stream()
+            .filter(extractorUrl -> extractorUrl.contains(website.getUrl()))
+            .findFirst().map(extractorMap::get).orElse(null);
     }
 }

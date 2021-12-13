@@ -1,4 +1,4 @@
-package ru.gobetter.newswatcher.extractor.impl.yandexnews;
+package ru.gobetter.newswatcher.extractor.impl.ria;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +15,18 @@ import static java.util.stream.Collectors.toList;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class YandexNewsExtractor implements WebsiteArticlesExtractor {
+class RiaNewsExtractor implements WebsiteArticlesExtractor {
+    private final RiaNewsPageObject ria;
+
     @Getter
-    private final String website = "http://news.yandex.ru";
-    private final YandexNewsPageObject yandex;
+    private final String website = "http://ria.ru";
 
     @Override
     public List<Article> extractArticles() {
-        val articleUrls = yandex.getArticlesUrls(getWebsite());
+        val articleUrls = ria.getArticlesUrls(getWebsite());
         log.debug("So, we got these article URLs", articleUrls);
         return articleUrls.stream()
-            .map(yandex::extractInfoFromArticle)
+            .map(ria::extractInfoFromArticle)
             .peek(article -> log.debug(article.toString()))
             .collect(toList());
     }

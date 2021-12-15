@@ -24,10 +24,8 @@ class RiaNewsExtractor implements WebsiteArticlesExtractor {
     @Override
     public List<Article> extractArticles() {
         val articleUrls = ria.getArticlesUrls(getWebsite());
-        log.debug("So, we got these article URLs", articleUrls);
         return articleUrls.stream()
             .map(ria::extractInfoFromArticle)
-            .peek(article -> log.debug(article.toString()))
             .collect(toList());
     }
 }

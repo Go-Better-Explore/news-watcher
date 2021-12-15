@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class LentaNewsExtractor implements WebsiteArticlesExtractor {
+public class LentaExtractor implements WebsiteArticlesExtractor {
     @Getter
     private final String website = "https://lenta.ru/";
     private final LentaPageObject lenta;

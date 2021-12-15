@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toSet;
 
 @Service
 @RequiredArgsConstructor
-class RiaNewsPageObject implements CommonExtractorOperations {
+class RiaPageObject implements CommonExtractorOperations {
     private final WebDriver driver;
 
     @Override

@@ -15,8 +15,8 @@ import static java.util.stream.Collectors.toList;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class RiaNewsExtractor implements WebsiteArticlesExtractor {
-    private final RiaNewsPageObject ria;
+class RiaExtractor implements WebsiteArticlesExtractor {
+    private final RiaPageObject ria;
 
     @Getter
     private final String website = "https://ria.ru";

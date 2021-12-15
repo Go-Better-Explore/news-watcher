@@ -13,6 +13,9 @@ import ru.gobetter.newswatcher.model.entity.Website;
 import javax.annotation.PostConstruct;
 import java.util.Map;
 
+import static java.util.Optional.ofNullable;
+import static java.util.function.Predicate.not;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -31,7 +34,12 @@ class GetWordsCountsController {
 
     @GetMapping("/words")
     Map<String, Integer> getWordsCount(@RequestBody WordsCountInputDto input) {
-        val extraction = articlesExtractionService.extractInfoFrom(new Website(input.getWebsite()));
+        val extraction = ofNullable(input)
+            .map(WordsCountInputDto::getWebsite)
+            .filter(not(String::isBlank))
+            .map(Website::new)
+            .map(articlesExtractionService::extractInfoFrom)
+            .orElseGet(articlesExtractionService::extractAll);
         WordsCount result = null;
         for (WordsCount count : extraction.values()) {
             if (result == null) {

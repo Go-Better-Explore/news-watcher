@@ -7,5 +7,7 @@ import ru.gobetter.newswatcher.model.entity.Website;
 import java.util.Map;
 
 public interface ArticlesExtractionService {
+    Map<Article, WordsCount> extractAll();
+
     Map<Article, WordsCount> extractInfoFrom(Website website);
 }

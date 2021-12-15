@@ -19,7 +19,7 @@ class RiaNewsExtractor implements WebsiteArticlesExtractor {
     private final RiaNewsPageObject ria;
 
     @Getter
-    private final String website = "http://ria.ru";
+    private final String website = "https://ria.ru";
 
     @Override
     public List<Article> extractArticles() {

@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 @Slf4j
 class YandexNewsExtractor implements WebsiteArticlesExtractor {
     @Getter
-    private final String website = "http://news.yandex.ru";
+    private final String website = "https://news.yandex.ru";
     private final YandexNewsPageObject yandex;
 
     @Override

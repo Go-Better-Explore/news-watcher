@@ -33,7 +33,7 @@ class GetWordsCountsController {
     }
 
     @GetMapping("/words")
-    Map<String, Integer> getWordsCount(@RequestBody WordsCountInputDto input) {
+    Map<String, Integer> getWordsCount(@RequestBody(required = false) WordsCountInputDto input) {
         val extraction = ofNullable(input)
             .map(WordsCountInputDto::getWebsite)
             .filter(not(String::isBlank))

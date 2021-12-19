@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.val;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -53,6 +54,18 @@ public class WordsCount {
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         val result = new WordsCount();
         result.wordsCount.putAll(topWords);
+        return result;
+    }
+
+    public static WordsCount sum(Collection<WordsCount> counts) {
+        WordsCount result = null;
+        for (WordsCount count : counts) {
+            if (result == null) {
+                result = count;
+                continue;
+            }
+            result = result.add(count);
+        }
         return result;
     }
 }

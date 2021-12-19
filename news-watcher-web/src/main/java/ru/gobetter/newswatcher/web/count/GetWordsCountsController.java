@@ -10,27 +10,22 @@ import ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount;
 import ru.gobetter.newswatcher.extractor.core.api.ArticlesExtractionService;
 import ru.gobetter.newswatcher.model.entity.Website;
 
-import javax.annotation.PostConstruct;
+import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static java.util.Optional.ofNullable;
 import static java.util.function.Predicate.not;
+import static java.util.stream.Collectors.toList;
+import static ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount.sum;
+import static ru.gobetter.newswatcher.web.count.WebsitesConstants.OPPOSITION_KEYS;
+import static ru.gobetter.newswatcher.web.count.WebsitesConstants.PRO_RUSSIAN_KEYS;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
 class GetWordsCountsController {
     private final ArticlesExtractionService articlesExtractionService;
-
-    @PostConstruct
-    void afterInit() {
-        log.debug("Well, I was added to the context!");
-    }
-
-    @GetMapping("/hello")
-    String getGreeting() {
-        return "hello, I'm news reader and I'm working!";
-    }
 
     @GetMapping("/words")
     Map<String, Integer> getWordsCount(@RequestBody(required = false) WordsCountInputDto input) {
@@ -40,15 +35,29 @@ class GetWordsCountsController {
             .map(Website::new)
             .map(articlesExtractionService::extractInfoFrom)
             .orElseGet(articlesExtractionService::extractAll);
-        WordsCount result = null;
-        for (WordsCount count : extraction.values()) {
-            if (result == null) {
-                result = count;
-                continue;
-            }
-            result = result.add(count);
-        }
-
+        val result = sum(extraction.values());
         return result.getOrderedCountData();
+    }
+
+    @GetMapping("/words/opposition")
+    Map<String, Integer> getOppositionWords() {
+        val counts = getFrom(OPPOSITION_KEYS);
+        return counts.getOrderedCountData();
+    }
+
+    @GetMapping("/words/prorussian")
+    Map<String, Integer> getProRussianWords() {
+        val counts = getFrom(PRO_RUSSIAN_KEYS);
+        return counts.getOrderedCountData();
+    }
+
+    private WordsCount getFrom(String... keys) {
+        val counts = Stream.of(keys)
+            .map(Website::new)
+            .map(articlesExtractionService::extractInfoFrom)
+            .map(Map::values)
+            .flatMap(Collection::stream)
+            .collect(toList());
+        return sum(counts);
     }
 }

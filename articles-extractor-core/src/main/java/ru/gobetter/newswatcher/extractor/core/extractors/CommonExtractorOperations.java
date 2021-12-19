@@ -5,6 +5,8 @@ import ru.gobetter.newswatcher.model.entity.Article;
 import java.util.Set;
 
 public interface CommonExtractorOperations {
+    String getWebsite();
+
     Set<String> getArticlesUrls(String mainPageUrl);
 
     Article extractInfoFromArticle(String articleUrl);

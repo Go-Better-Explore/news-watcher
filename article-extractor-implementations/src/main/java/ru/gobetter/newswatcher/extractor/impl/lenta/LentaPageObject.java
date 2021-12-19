@@ -6,6 +6,7 @@ import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gobetter.newswatcher.extractor.core.extractors.CommonExtractorOperations;
 import ru.gobetter.newswatcher.model.entity.Article;
@@ -17,9 +18,15 @@ import static java.util.stream.Collectors.toSet;
 
 @Slf4j
 @Service
+@Qualifier(LentaPageObject.WEBSITE)
 @RequiredArgsConstructor
 public class LentaPageObject implements CommonExtractorOperations {
+    public static final String WEBSITE = "https://lenta.ru";
     private final WebDriver driver;
+
+    public String getWebsite() {
+        return WEBSITE;
+    }
 
     @Override
     public Set<String> getArticlesUrls(String mainPageUrl) {

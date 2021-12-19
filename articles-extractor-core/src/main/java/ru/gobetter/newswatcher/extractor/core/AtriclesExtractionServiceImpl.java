@@ -1,5 +1,6 @@
 package ru.gobetter.newswatcher.extractor.core;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -47,7 +48,7 @@ class AtriclesExtractionServiceImpl implements ArticlesExtractionService {
         return extractWith(extractor);
     }
 
-    private Map<Article, WordsCount> extractWith(WebsiteArticlesExtractor extractor) {
+    private Map<Article, WordsCount> extractWith(@NonNull WebsiteArticlesExtractor extractor) {
         val articles = extractor.extractArticles();
         log.info(articles.toString());
         log.info("Articles retrieval is done!");

@@ -31,7 +31,11 @@ class EchoPageObject implements CommonExtractorOperations {
     @Override
     public Set<String> getArticlesUrls(String mainPageUrl) {
         driver.navigate().to(mainPageUrl);
-        val newsElement = driver.findElement(By.xpath("//*[text()='Новости']"));
+        val newsElement = driver.findElements(By.cssSelector(".menubar a.menulink span"))
+            .stream()
+            .filter(element -> "Новости".equals(element.getText()))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Element not found"));
         newsElement.click();
         val newsLinks = driver.findElements(By.cssSelector(".newsblock h3 a"));
         return getLinks(newsLinks);
@@ -42,10 +46,10 @@ class EchoPageObject implements CommonExtractorOperations {
         driver.navigate().to(articleUrl);
         val article = new Article();
 
-        val titleElement = driver.findElement(By.cssSelector("h1[itemprop='headline']"));
+        val titleElement = driver.findElement(By.cssSelector(".conthead h1"));
         article.setHeadline(titleElement.getText());
 
-        val contentElements = driver.findElements(By.cssSelector("div[itemprop='articleBody'] p"));
+        val contentElements = driver.findElements(By.cssSelector(".typical p"));
         article.setContent(getTexts(contentElements));
 
         article.setArticleDate(now());

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>news-reader-selenium-integration</artifactId>
+    <artifactId>web-interaction-api</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -18,25 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>ru.gobetter.projects</groupId>
-            <artifactId>web-interaction-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>selenium</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-json</artifactId>
+            <artifactId>selenium-api</artifactId>
         </dependency>
     </dependencies>
 

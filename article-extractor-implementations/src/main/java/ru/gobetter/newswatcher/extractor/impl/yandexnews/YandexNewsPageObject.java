@@ -1,6 +1,6 @@
 package ru.gobetter.newswatcher.extractor.impl.yandexnews;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +18,10 @@ import static java.util.stream.Collectors.toSet;
 
 @Service
 @Qualifier(YandexNewsPageObject.WEBSITE)
-@RequiredArgsConstructor
 class YandexNewsPageObject implements CommonExtractorOperations {
     public static final String WEBSITE = "https://news.yandex.ru";
-    private final WebDriver driver;
+    @Setter
+    private WebDriver driver;
 
     @Override
     public String getWebsite() {

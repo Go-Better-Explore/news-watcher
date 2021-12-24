@@ -1,7 +1,6 @@
 package ru.gobetter.newswatcher.extractor.impl.lenta;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Setter;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,13 +15,12 @@ import java.util.Set;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 
-@Slf4j
 @Service
 @Qualifier(LentaPageObject.WEBSITE)
-@RequiredArgsConstructor
 public class LentaPageObject implements CommonExtractorOperations {
     public static final String WEBSITE = "https://lenta.ru";
-    private final WebDriver driver;
+    @Setter
+    private WebDriver driver;
 
     public String getWebsite() {
         return WEBSITE;
@@ -39,7 +37,6 @@ public class LentaPageObject implements CommonExtractorOperations {
 
     @Override
     public Article extractInfoFromArticle(String articleUrl) {
-        log.info("Extracting from article " + articleUrl);
         driver.navigate().to(articleUrl);
 
         val article = new Article();

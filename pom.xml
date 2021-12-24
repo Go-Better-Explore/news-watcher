@@ -16,6 +16,7 @@
         <module>news-watcher-web</module>
         <module>article-extractor-implementations</module>
         <module>news-reader-selenium-integration</module>
+        <module>web-interaction-api</module>
     </modules>
 
     <properties>
@@ -42,6 +43,11 @@
             <dependency>
                 <groupId>ru.gobetter.projects</groupId>
                 <artifactId>news-analytics-logic</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.gobetter.projects</groupId>
+                <artifactId>web-interaction-api</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

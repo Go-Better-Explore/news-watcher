@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 
@@ -19,14 +17,13 @@ import static java.util.Objects.requireNonNull;
 import static org.testcontainers.containers.Network.newNetwork;
 
 @Slf4j
-@Configuration
 class SeleniumBeans {
     private static final String ADDONS_DIRECTORY_WITHIN_CONTAINER = "/etc/newsreader/addons";
     private static final String DRIVER_EXECUTABLE_PROPERTY_KEY = "webdriver.gecko.driver";
     @Value("${" + DRIVER_EXECUTABLE_PROPERTY_KEY + "}")
     private String pathToExecutable;
 
-    @Bean
+    //    @Bean
     WebDriver getSeleniumDriver() {
         val profile = new FirefoxProfile();
         profile.setPreference("permissions.default.image", 2);

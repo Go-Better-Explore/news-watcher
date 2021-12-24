@@ -10,9 +10,8 @@ import ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount;
 import ru.gobetter.newswatcher.extractor.core.api.ArticlesExtractionService;
 import ru.gobetter.newswatcher.model.entity.Website;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import static java.util.Optional.ofNullable;
 import static java.util.function.Predicate.not;
@@ -33,7 +32,7 @@ class GetWordsCountsController {
             .map(WordsCountInputDto::getWebsite)
             .filter(not(String::isBlank))
             .map(Website::new)
-            .map(articlesExtractionService::extractInfoFrom)
+            .map(articlesExtractionService::extractFrom)
             .orElseGet(articlesExtractionService::extractAll);
         val result = sum(extraction.values());
         return result.getOrderedCountData();
@@ -51,13 +50,9 @@ class GetWordsCountsController {
         return counts.getOrderedCountData();
     }
 
-    private WordsCount getFrom(String... keys) {
-        val counts = Stream.of(keys)
-            .map(Website::new)
-            .map(articlesExtractionService::extractInfoFrom)
-            .map(Map::values)
-            .flatMap(Collection::stream)
-            .collect(toList());
-        return sum(counts);
+    private WordsCount getFrom(List<String> keys) {
+        val websites = keys.stream().map(Website::new).collect(toList());
+        val result = articlesExtractionService.extractFrom(websites);
+        return sum(result.values());
     }
 }

@@ -1,6 +1,6 @@
 package ru.gobetter.newswatcher.extractor.impl.vesti;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +17,10 @@ import static java.util.stream.Collectors.toSet;
 
 @Service
 @Qualifier(VestiPageObject.WEBSITE)
-@RequiredArgsConstructor
 class VestiPageObject implements CommonExtractorOperations {
     public static final String WEBSITE = "https://vesti.ru";
-    private final WebDriver driver;
+    @Setter
+    private WebDriver driver;
 
     @Override
     public String getWebsite() {

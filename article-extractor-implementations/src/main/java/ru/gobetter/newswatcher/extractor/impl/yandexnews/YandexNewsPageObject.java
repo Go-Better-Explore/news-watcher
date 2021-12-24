@@ -4,7 +4,6 @@ import lombok.Setter;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gobetter.newswatcher.extractor.core.extractors.CommonExtractorOperations;
@@ -13,13 +12,13 @@ import ru.gobetter.newswatcher.model.entity.Article;
 import java.util.Set;
 
 import static java.time.LocalDateTime.now;
-import static java.util.stream.Collectors.joining;
 import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getLinks;
+import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getTexts;
 
 @Service
 @Qualifier(YandexNewsPageObject.WEBSITE)
 class YandexNewsPageObject implements CommonExtractorOperations {
-    public static final String WEBSITE = "https://news.yandex.ru";
+    static final String WEBSITE = "https://news.yandex.ru";
     @Setter
     private WebDriver driver;
 
@@ -42,7 +41,7 @@ class YandexNewsPageObject implements CommonExtractorOperations {
         article.setHeadline(titleElement.getText());
 
         val contentSnippets = driver.findElements(By.cssSelector(".mg-story__body .mg-snippets-group__item .mg-snippet__text span"));
-        article.setContent(contentSnippets.stream().map(WebElement::getText).collect(joining("\n")));
+        article.setContent(getTexts(contentSnippets));
 
         article.setArticleDate(now());
         return article;

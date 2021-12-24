@@ -4,7 +4,6 @@ import lombok.Setter;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.gobetter.newswatcher.extractor.core.extractors.CommonExtractorOperations;
@@ -12,13 +11,13 @@ import ru.gobetter.newswatcher.model.entity.Article;
 
 import java.util.Set;
 
-import static java.util.stream.Collectors.joining;
 import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getLinks;
+import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getTexts;
 
 @Service
 @Qualifier(LentaPageObject.WEBSITE)
 public class LentaPageObject implements CommonExtractorOperations {
-    public static final String WEBSITE = "https://lenta.ru";
+    static final String WEBSITE = "https://lenta.ru";
     @Setter
     private WebDriver driver;
 
@@ -43,7 +42,7 @@ public class LentaPageObject implements CommonExtractorOperations {
         article.setHeadline(titleElement.getText());
 
         val contentElements = driver.findElements(By.cssSelector(".topic-body__content .topic-body__content-text"));
-        article.setContent(contentElements.stream().map(WebElement::getText).collect(joining("\n")));
+        article.setContent(getTexts(contentElements));
 
         return article;
     }

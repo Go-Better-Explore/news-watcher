@@ -19,8 +19,8 @@ public class SeleniumDriverFactory {
         profile.setPreference("permissions.default.image", 2);
         profile.setPreference("network.dns.disablePrefetchFromHTTPS", false);
         profile.setPreference("network.predictor.enable-prefetch", false);
-        val options = new FirefoxOptions();
-        options.setProfile(profile);
+        val options = new FirefoxOptions()
+            .setProfile(profile);
 
         val container = new BrowserWebDriverContainer<>()
             .withCapabilities(options)

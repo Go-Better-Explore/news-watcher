@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static java.time.LocalDateTime.now;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toSet;
+import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getLinks;
 
 @Service
 @Qualifier(RiaPageObject.WEBSITE)
@@ -32,7 +32,7 @@ class RiaPageObject implements CommonExtractorOperations {
     public Set<String> getArticlesUrls(String mainPageUrl) {
         driver.navigate().to(mainPageUrl);
         val links = driver.findElements(By.cssSelector("#content .section__content .cell-list__list .cell-list__item.m-no-image a.cell-list__item-link"));
-        return links.stream().map(link -> link.getAttribute("href")).collect(toSet());
+        return getLinks(links);
     }
 
     @Override

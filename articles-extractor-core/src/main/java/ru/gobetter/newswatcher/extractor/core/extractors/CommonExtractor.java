@@ -9,6 +9,7 @@ import ru.gobetter.newswatcher.model.entity.Article;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,8 +22,12 @@ class CommonExtractor implements WebsiteArticlesExtractor {
     public List<Article> extractArticles() {
         log.info("Extracting info from " + pageObject.getWebsite());
         val articleUrls = pageObject.getArticlesUrls(pageObject.getWebsite());
+        val total = articleUrls.size();
+        AtomicInteger current = new AtomicInteger();
         val result = articleUrls.stream()
-            .peek(url -> log.info("Visiting " + url))
+            .peek(url ->
+                log.info("[" + (current.incrementAndGet()) + "/" + total + "] " + "Visiting " + url)
+            )
             .map(articleUrl -> {
                 try {
                     return pageObject.extractInfoFromArticle(articleUrl);
@@ -31,6 +36,7 @@ class CommonExtractor implements WebsiteArticlesExtractor {
                 }
             })
             .filter(Objects::nonNull)
+            .limit(5)
             .collect(toList());
         log.info("Done extracting from " + pageObject.getWebsite());
         return result;

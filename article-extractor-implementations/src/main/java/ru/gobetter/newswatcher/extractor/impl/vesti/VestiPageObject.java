@@ -13,7 +13,7 @@ import ru.gobetter.newswatcher.model.entity.Article;
 import java.util.Set;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toSet;
+import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getLinks;
 
 @Service
 @Qualifier(VestiPageObject.WEBSITE)
@@ -31,9 +31,7 @@ class VestiPageObject implements CommonExtractorOperations {
     public Set<String> getArticlesUrls(String mainPageUrl) {
         driver.navigate().to(mainPageUrl);
         val links = driver.findElements(By.cssSelector(".main-news__title a"));
-        return links.stream()
-            .map(link -> link.getAttribute("href"))
-            .collect(toSet());
+        return getLinks(links);
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static java.time.LocalDateTime.now;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toSet;
+import static ru.gobetter.newswatcher.extractor.impl.utils.SeleniumHelper.getLinks;
 
 @Service
 @Qualifier(YandexNewsPageObject.WEBSITE)
@@ -31,7 +31,7 @@ class YandexNewsPageObject implements CommonExtractorOperations {
     public Set<String> getArticlesUrls(String mainPageUrl) {
         driver.navigate().to(mainPageUrl);
         val links = driver.findElements(By.cssSelector("#neo-page article a"));
-        return links.stream().map(link -> link.getAttribute("href")).collect(toSet());
+        return getLinks(links);
     }
 
     public Article extractInfoFromArticle(String articleUrl) {

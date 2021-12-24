@@ -36,7 +36,6 @@ class CommonExtractor implements WebsiteArticlesExtractor {
                 }
             })
             .filter(Objects::nonNull)
-            .limit(5)
             .collect(toList());
         log.info("Done extracting from " + pageObject.getWebsite());
         return result;

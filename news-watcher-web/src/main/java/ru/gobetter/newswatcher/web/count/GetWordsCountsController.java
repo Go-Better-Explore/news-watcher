@@ -17,8 +17,6 @@ import static java.util.Optional.ofNullable;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toList;
 import static ru.gobetter.newswatcher.analytics.logic.wordscount.model.WordsCount.sum;
-import static ru.gobetter.newswatcher.web.count.WebsitesConstants.OPPOSITION_KEYS;
-import static ru.gobetter.newswatcher.web.count.WebsitesConstants.PRO_RUSSIAN_KEYS;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,18 +34,6 @@ class GetWordsCountsController {
             .orElseGet(articlesExtractionService::extractAll);
         val result = sum(extraction.values());
         return result.getOrderedCountData();
-    }
-
-    @GetMapping("/words/opposition")
-    Map<String, Integer> getOppositionWords() {
-        val counts = getFrom(OPPOSITION_KEYS);
-        return counts.getOrderedCountData();
-    }
-
-    @GetMapping("/words/prorussian")
-    Map<String, Integer> getProRussianWords() {
-        val counts = getFrom(PRO_RUSSIAN_KEYS);
-        return counts.getOrderedCountData();
     }
 
     private WordsCount getFrom(List<String> keys) {

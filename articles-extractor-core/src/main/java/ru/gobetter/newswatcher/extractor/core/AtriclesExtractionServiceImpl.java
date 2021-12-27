@@ -12,7 +12,7 @@ import ru.gobetter.newswatcher.extractor.core.extractors.ArticleExtractorFactory
 import ru.gobetter.newswatcher.extractor.core.extractors.ExtractorWebCommand;
 import ru.gobetter.newswatcher.model.entity.Article;
 import ru.gobetter.newswatcher.model.entity.Website;
-import ru.gobetter.newswatcher.web.interaction.api.WebInteractionExecutor;
+import ru.gobetter.webinteraction.api.WebInteractionExecutor;
 
 import java.util.ArrayList;
 import java.util.Collection;

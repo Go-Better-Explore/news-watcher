@@ -31,23 +31,15 @@
         </dependency>
         <dependency>
             <groupId>ru.gobetter.projects</groupId>
-            <artifactId>article-extractor-implementations</artifactId>
+            <artifactId>articles-extractor-implementations</artifactId>
         </dependency>
         <dependency>
             <groupId>ru.gobetter.projects</groupId>
             <artifactId>news-watcher-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>ru.gobetter.projects</groupId>
-            <artifactId>news-reader-selenium-integration</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-json</artifactId>
+            <groupId>ru.gobetter.projects.webinteraction</groupId>
+            <artifactId>web-interaction-engines</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

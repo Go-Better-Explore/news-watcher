@@ -26,7 +26,7 @@
             <artifactId>news-analytics-logic</artifactId>
         </dependency>
         <dependency>
-            <groupId>ru.gobetter.projects</groupId>
+            <groupId>ru.gobetter.projects.webinteraction</groupId>
             <artifactId>web-interaction-api</artifactId>
         </dependency>
         <dependency>

@@ -11,12 +11,10 @@
     <modules>
         <module>news-model</module>
         <module>news-analytics-logic</module>
-        <module>news-watcher-main</module>
         <module>articles-extractor-core</module>
+        <module>articles-extractor-implementations</module>
         <module>news-watcher-web</module>
-        <module>article-extractor-implementations</module>
-        <module>news-reader-selenium-integration</module>
-        <module>web-interaction-api</module>
+        <module>news-watcher-main</module>
     </modules>
 
     <properties>
@@ -46,7 +44,7 @@
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>ru.gobetter.projects</groupId>
+                <groupId>ru.gobetter.projects.webinteraction</groupId>
                 <artifactId>web-interaction-api</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
@@ -57,17 +55,17 @@
             </dependency>
             <dependency>
                 <groupId>ru.gobetter.projects</groupId>
-                <artifactId>article-extractor-implementations</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ru.gobetter.projects</groupId>
-                <artifactId>news-reader-selenium-integration</artifactId>
+                <artifactId>articles-extractor-implementations</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>ru.gobetter.projects</groupId>
                 <artifactId>news-watcher-web</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.gobetter.projects.webinteraction</groupId>
+                <artifactId>web-interaction-engines</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -81,21 +79,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-log4j2</artifactId>
                 <version>2.6.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>selenium</artifactId>
-                <version>1.16.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>4.1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-json</artifactId>
-                <version>4.1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

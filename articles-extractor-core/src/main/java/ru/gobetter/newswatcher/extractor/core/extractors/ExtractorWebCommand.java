@@ -5,7 +5,7 @@ import lombok.val;
 import org.openqa.selenium.WebDriver;
 import ru.gobetter.newswatcher.extractor.core.api.WebsiteArticlesExtractor;
 import ru.gobetter.newswatcher.model.entity.Article;
-import ru.gobetter.newswatcher.web.interaction.api.WebCommand;
+import ru.gobetter.webinteraction.api.WebCommand;
 
 import java.util.List;
 

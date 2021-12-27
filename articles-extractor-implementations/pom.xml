@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>article-extractor-implementations</artifactId>
+    <artifactId>articles-extractor-implementations</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
